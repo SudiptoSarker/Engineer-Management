@@ -1,0 +1,46 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <script> src = "D:\Sudipto\JabaIT\2. Cost Allocation System\v2\Engineer-Management\Engineer Management\wwwroot\js\site.js"</script>
+    <div>
+        <input type="file"
+               id="csv" name="csv">
+     <input type="button" onclick="getCSV()" />
+    </div>
+
+    <div id="mytable"></div>
+<!--    <script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js"></script> -->
+<script src="~/lib/ce-master/dist/index_mofified.js"></script>
+
+    <script src="https://jsuites.net/v4/jsuites.js"></script>
+    <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css">
+    <link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css">
+
+    <script>
+
+        var insertedRow = function (instance, rowNumber, numOfRows, rowRecords, insertBefore) {
+            console.info("行が挿入されました。rowNumber:" + rowNumber + "/  numOfRows:" + numOfRows + "/  rowRecords:" + rowRecords + "/  insertBefore:" + insertBefore );
+        }
+
+        const myTable = jspreadsheet(document.getElementById('mytable'), {
+            oninsertrowmember: insertedRow,
+            data: [
+                ['2022/10/24', '文房具', 420],
+                ['2022/10/26', '外食費', 1300]
+            ],
+            columns: [
+                { type: 'calendar', title: '日付', width: 120, options: { format: 'YYYY/MM/DD' } },
+                { type: 'text', title: '項目', width: 300 },
+                { type: 'numeric', title: '出金', width: 200, mask: '#,##' },
+            ]
+         });
+
+    </script>
+</div>
